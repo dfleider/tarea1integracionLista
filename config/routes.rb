@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 get 'status' => 'tarea#status'
 
 post 'validarFirma' => 'tarea#validar' 
+
+get 'texto' => 'tarea#texto'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
