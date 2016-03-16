@@ -12,7 +12,7 @@ class TareaController < ApplicationController
 
 		@mensaje = params[:mensaje]
 		digest = Digest::SHA256.hexdigest(@mensaje)
-		hash = params[:hash]
+		hash = params[:hash].downcase
 
 		if digest == hash
 			render json: {mensaje: @mensaje, valido: true}
