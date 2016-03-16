@@ -5,11 +5,16 @@ class TareaController < ApplicationController
 	end
 
 	def validar
-		@mensaje = params[:mensaje]
-		sha256 = Digest::SHA256.new
-		digest = sha256.digest @mensaje
+		unless params[:hash] and params[:mensaje]
+			head 400
+			return
+		end
 
-		if digest == params[:hash]
+		@mensaje = params[:mensaje]
+		digest = Digest::SHA256.hexdigest(@mensaje)
+		hash = params[:hash]
+
+		if digest == hash
 			render json: {mensaje: @mensaje, valido: true}
 		else 
 			head 400
