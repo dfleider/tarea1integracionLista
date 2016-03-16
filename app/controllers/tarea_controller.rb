@@ -16,6 +16,8 @@ class TareaController < ApplicationController
 
 		if digest == hash
 			render json: {mensaje: @mensaje, valido: true}
+		elsif (digest != hash) #&& hash.empty?)
+			render json: {valido: false}
 		else 
 			head 400
 		end
